@@ -9,7 +9,7 @@ export function prepareHistoricalAQI(airQualityIndex, dataFromServer) {
         if (eachAQI.city === AQI.city) {
           eachAQI.currentaqi = AQI.aqi.toFixed(2);
           eachAQI.AQIs.push({
-            aqi: AQI.aqi,
+            aqi: AQI.aqi.toFixed(2),
             datePublished: dayjs().fromNow(),
           });
         }
@@ -19,7 +19,7 @@ export function prepareHistoricalAQI(airQualityIndex, dataFromServer) {
         city: AQI.city,
         AQIs: [
           {
-            aqi: AQI.aqi,
+            aqi: AQI.aqi.toFixed(2),
             datePublished: dayjs().fromNow(),
           },
         ],
@@ -30,10 +30,3 @@ export function prepareHistoricalAQI(airQualityIndex, dataFromServer) {
   }
   return currentAQI;
 }
-
-export const maxItem = (array, count) => {
-  if (count > 0) {
-    return array.splice(-count, count);
-  }
-  return array;
-};

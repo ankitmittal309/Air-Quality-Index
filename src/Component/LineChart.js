@@ -16,6 +16,9 @@ const LineChartGraph = (props) => {
   var dataforEachCity = props.airQualityIndex
     .filter((data) => data.city === props.aqiDataonClick)
     .map((data) => data.AQIs);
+  if (checkCityInAQI.includes(props.aqiDataonClick)) {
+    dataforEachCity[0] = dataforEachCity[0].slice(-10);
+  }
 
   if (!checkCityInAQI.includes(props.aqiDataonClick)) {
     return (

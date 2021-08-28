@@ -25,7 +25,7 @@ const AQITable = (props) => {
             >
               <td>{data.city}</td>
               <td style={{ color: colorfunc(data) }}>
-                {data.AQIs[data.AQIs.length - 1].aqi.toFixed(2)}
+                {data.AQIs[data.AQIs.length - 1].aqi}
               </td>
               <td>{data.AQIs[data.AQIs.length - 1].datePublished}</td>
             </tr>
