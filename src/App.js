@@ -5,27 +5,16 @@ import { clientAPI } from "./constants";
 import LineChartGraph from "./Component/LineChart";
 import AQIGuideChart from "./Component/AQIGuideChart";
 import AQITable from "./Component/AQITable";
-import { sortOn, merge } from "./Utility/common";
-import { addKeyAndValue } from "./Utility/common";
-import dayjs from "dayjs";
+import { prepareHistoricalAQI } from "./Utility/common";
 
 const client = new W3CWebSocket(clientAPI);
 
-var relativeTime = require("dayjs/plugin/relativeTime");
-dayjs.extend(relativeTime);
-
 function App() {
   const [airQualityIndex, setAirQualityIndex] = useState([]);
+  const [aqiDataonClick, setAqiDataonClick] = useState([]);
 
   const dataonClick = function getIndividualData(e) {
-    // const addpercitydata = addKeyAndValue(
-    //   airQualityIndex,
-    //   "perCity",
-    //   e[0].city
-    // );
-    // console.log(addKeyAndValue(airQualityIndex, "perCity", e[0].city));
-    // setAirQualityIndex(addpercitydata);
-    return e;
+    setAqiDataonClick(e[0].city);
   };
 
   useEffect(() => {
@@ -35,18 +24,10 @@ function App() {
 
     client.onmessage = (event) => {
       const dataFromServer = JSON.parse(event.data);
-
-      var finalmerge = merge(airQualityIndex, dataFromServer, "city");
-      finalmerge.sort(sortOn("city"));
-      addKeyAndValue(finalmerge, "time", dayjs().format());
-
-      setAirQualityIndex(finalmerge);
+      const updatedAQI = prepareHistoricalAQI(airQualityIndex, dataFromServer);
+      setAirQualityIndex(updatedAQI);
     };
-
-    // return () => {
-    //   client.close();
-    // };
-  });
+  }, [airQualityIndex]);
 
   return (
     <>
@@ -55,7 +36,10 @@ function App() {
       <AQIGuideChart />
 
       <div className="top">
-        <LineChartGraph airQualityIndex={airQualityIndex} />
+        <LineChartGraph
+          airQualityIndex={airQualityIndex}
+          aqiDataonClick={aqiDataonClick}
+        />
         <div className="tablewrapper">
           <AQITable
             airQualityIndex={airQualityIndex}

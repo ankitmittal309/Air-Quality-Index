@@ -1,22 +1,39 @@
-export const sortOn = (property) => {
-  return function (a, b) {
-    if (a[property] < b[property]) {
-      return -1;
-    } else if (a[property] > b[property]) {
-      return 1;
+import dayjs from "dayjs";
+
+export function prepareHistoricalAQI(airQualityIndex, dataFromServer) {
+  const currentAQI = [...airQualityIndex];
+  for (const AQI of dataFromServer) {
+    const cities = currentAQI.map((eachAQI) => eachAQI.city);
+    if (cities.includes(AQI.city)) {
+      currentAQI.forEach((eachAQI) => {
+        if (eachAQI.city === AQI.city) {
+          eachAQI.currentaqi = AQI.aqi.toFixed(2);
+          eachAQI.AQIs.push({
+            aqi: AQI.aqi,
+            datePublished: dayjs().fromNow(),
+          });
+        }
+      });
     } else {
-      return 0;
+      const prepareCityAQI = {
+        city: AQI.city,
+        AQIs: [
+          {
+            aqi: AQI.aqi,
+            datePublished: dayjs().fromNow(),
+          },
+        ],
+        currentaqi: AQI.aqi.toFixed(2),
+      };
+      currentAQI.push(prepareCityAQI);
     }
-  };
-};
-
-export var merge = (a, b, p) =>
-  a.filter((aa) => !b.find((bb) => aa[p] === bb[p])).concat(b);
-
-export function addKeyAndValue(arr, key, value) {
-  for (let i = 0; i < arr.length; i++) {
-    let obj = arr[i];
-    obj[key] = value;
   }
-  return arr;
+  return currentAQI;
 }
+
+export const maxItem = (array, count) => {
+  if (count > 0) {
+    return array.splice(-count, count);
+  }
+  return array;
+};
