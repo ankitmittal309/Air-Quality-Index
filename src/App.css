@@ -105,4 +105,7 @@ tr:nth-child(even) {
     margin-top: 50px;
     width: 70%;
   }
+  .classifyAQI {
+    grid-gap: 4%;
+  }
 }
