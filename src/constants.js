@@ -1,1 +1,1 @@
-export const clientAPI = "ws://city-ws.herokuapp.com/";
+export const clientAPI = "wss://city-ws.herokuapp.com/";
