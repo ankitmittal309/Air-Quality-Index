@@ -106,6 +106,7 @@ tr:nth-child(even) {
     width: 70%;
   }
   .classifyAQI {
-    grid-gap: 7%;
+    grid-template-columns: repeat(6, 9%);
+    grid-gap: 6%;
   }
 }
