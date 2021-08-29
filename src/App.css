@@ -65,7 +65,7 @@ tr:nth-child(even) {
   border-radius: 50%;
   margin: auto;
   align-items: center;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 800;
   color: white;
 }
@@ -112,5 +112,6 @@ tr:nth-child(even) {
   .classifyImg {
     height: 44px;
     width: 44px;
+    font-size: 9px;
   }
 }
