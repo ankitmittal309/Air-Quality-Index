@@ -40,6 +40,7 @@ function App() {
           airQualityIndex={airQualityIndex}
           aqiDataonClick={aqiDataonClick}
         />
+
         <div className="tablewrapper">
           <AQITable
             airQualityIndex={airQualityIndex}

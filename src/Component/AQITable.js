@@ -19,12 +19,13 @@ const AQITable = (props) => {
           return (
             <tr
               key={data.city}
+              style={{ backgroundColor: colorfunc(data).bg }}
               onClick={() => {
                 props.getIndividualData([data]);
               }}
             >
               <td>{data.city}</td>
-              <td style={{ color: colorfunc(data) }}>
+              <td style={{ color: colorfunc(data).color }}>
                 {data.AQIs[data.AQIs.length - 1].aqi}
               </td>
               <td>{data.AQIs[data.AQIs.length - 1].datePublished}</td>

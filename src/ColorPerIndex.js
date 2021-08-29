@@ -1,15 +1,15 @@
 export default function colorfunc(data) {
   if (data.AQIs[data.AQIs.length - 1].aqi > 400) {
-    return "#af2d24";
+    return { color: "#af2d24" };
   } else if (data.AQIs[data.AQIs.length - 1].aqi > 300) {
-    return "#e93f33";
+    return { color: "#e93f33", bg: "salmon" };
   } else if (data.AQIs[data.AQIs.length - 1].aqi > 200) {
-    return "#f29c33";
+    return { color: "#f29c33", bg: "rosybrown" };
   } else if (data.AQIs[data.AQIs.length - 1].aqi > 100) {
-    return "#fff833";
+    return { color: "#fff833", bg: "tan" };
   } else if (data.AQIs[data.AQIs.length - 1].aqi > 50) {
-    return "#a3c853";
+    return { color: "#a3c853", bg: "cadetblue" };
   } else {
-    return "#55a84f";
+    return { color: "#55a84f", bg: "green" };
   }
 }
