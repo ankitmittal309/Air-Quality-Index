@@ -50,7 +50,7 @@ tr:nth-child(even) {
 }
 .classifyAQI {
   display: grid;
-  grid-template-columns: repeat(6, 8%);
+  grid-template-columns: repeat(6, 7%);
   grid-gap: 1%;
   place-content: center;
   margin-bottom: 40px;
