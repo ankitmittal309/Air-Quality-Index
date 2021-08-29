@@ -46,7 +46,11 @@ const LineChartGraph = (props) => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis stroke="#fff" dataKey="datePublished" padding={{ left: 0 }} />
-          <YAxis stroke="#fff" domain={"auto, auto"} />
+          <YAxis
+            stroke="#fff"
+            type="number"
+            domain={["dataMin - 10", "dataMax + 10"]}
+          />
           <Tooltip />
           <Legend />
           <Line type="monotone" dataKey="aqi" stroke="#03fc90" />
