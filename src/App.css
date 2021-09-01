@@ -40,6 +40,7 @@ th {
 td {
   font-weight: 600;
   font-family: cursive;
+  cursor: pointer;
 }
 th {
   font-size: 20px;
